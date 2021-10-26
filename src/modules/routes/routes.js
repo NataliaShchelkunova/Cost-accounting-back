@@ -14,9 +14,7 @@ router.post('/createCost', createNewCost);
 router.patch('/updateCost', changeCostInfo);
 router.delete('/deleteCost', deleteCost);
 
-
 //User routes
-
 module.exports = router;
 
 

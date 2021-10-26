@@ -7,18 +7,22 @@ module.exports.getAllCost = (req, res) => {
 };
 
 module.exports.createNewCost = (req, res) => {
-  const { body } = req;
-  const cost = new Cost({
-    text: body.text,
-    totalMoney: body.totalMoney,
-    date: body.date
-  });
-  cost.save().then(result => {
-    Cost.find().then(result => {
-      res.send({ data: result });
+  if (body.hasOwnProperty('_id') && (body.hasOwnProperty('text') || body.hasOwnProperty('totalMoney') || body.hasOwnProperty('date')))  {
+    const { body } = req;
+    const cost = new Cost({
+      text: body.text,
+      totalMoney: body.totalMoney,
+      date: body.date
     });
-  });
-}
+    cost.save().then(result => {
+      Cost.find().then(result => {
+        res.send({ data: result });
+      });
+    });
+  } else {
+    res.status(422).send('Error! Params not correct');
+  };
+};
 
 module.exports.changeCostInfo = (req, res) => {
   const { body } = req;
