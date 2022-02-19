@@ -13,7 +13,7 @@ mongoose.connect(url);
 app.use(express.json());
 app.use('/', apiRoutes);
 
-const port = 5000;
+const port = 5500;
 app.listen(port, () => {
   console.log('Example app listening on ' + port);
 });
